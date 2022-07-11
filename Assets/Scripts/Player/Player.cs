@@ -35,11 +35,11 @@ public class Player : MonoBehaviour
         scoretext.text = "x" + score.ToString();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag != "Ground")
         {
-
+            Vector2 vt = collision.collider.GetComponent<Rigidbody2D>().velocity;
             if (collision.collider.transform.parent.gameObject != null)
             {
                 var EnermyParent = collision.collider.transform.parent.gameObject;
@@ -48,15 +48,27 @@ public class Player : MonoBehaviour
                 {
                     if (rb.velocity.y < 0)
                     {
+
                         if (collision.collider.tag != "Ocsen")
+                        {
+                            collision.collider.GetComponent<Rigidbody2D>().velocity = new Vector2(0, vt.y);
+                            collision.collider.isTrigger = true;
                             Destroy(collision.collider);
+                        }
 
                     }
                     else
                     {
+                        collision.collider.isTrigger = true;
+                        collision.collider.GetComponent<Rigidbody2D>().velocity = new Vector2(vt.x, 0);
                         decreaseHealth();
+                        yield return new WaitForSeconds(2f);
+                        collision.collider.isTrigger = false;
+                        collision.collider.GetComponent<Rigidbody2D>().velocity = vt;
+
 
                     }
+
 
                 }
                 if (collision.collider.CompareTag("Cup"))
@@ -68,6 +80,7 @@ public class Player : MonoBehaviour
 
 
         }
+        yield return null;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -85,11 +98,15 @@ public class Player : MonoBehaviour
             isdead = true;
             UIManager.instance.showlosebanner(isdead);
         }
-        if(collision.CompareTag("Bullet"))
+        if (collision.CompareTag("Bullet"))
         {
             decreaseHealth();
             collision.gameObject.SetActive(false);
-        }    
+        }
+        if(collision.CompareTag("Trap"))
+        {
+            decreaseHealth();
+        }
             
     }
 
@@ -125,6 +142,10 @@ public class Player : MonoBehaviour
             isdead = true;
             UIManager.instance.showlosebanner(isdead);
         }
+    }
+    public void increaseScore()
+    {
+        score++;
     }
     
 

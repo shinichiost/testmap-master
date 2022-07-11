@@ -30,7 +30,7 @@ TextureImporter:
       213: 9061902446755307621
     second: Idle 2 (30x38)_8
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -50,6 +50,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -59,8 +61,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -81,9 +83,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -311,6 +317,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Idle 2 (30x38)_4: 153828300527330788
+      Idle 2 (30x38)_8: 9061902446755307621
+      Idle 2 (30x38)_7: -8588357363180387928
+      Idle 2 (30x38)_2: 141806763454885457
+      Idle 2 (30x38)_3: 2174736594061878725
+      Idle 2 (30x38)_5: 995982210551407014
+      Idle 2 (30x38)_1: -2156606239789417430
+      Idle 2 (30x38)_6: -6519685162215418635
+      Idle 2 (30x38)_0: -6077868597088469121
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

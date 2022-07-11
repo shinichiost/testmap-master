@@ -8,20 +8,23 @@ public class Nam : MonoBehaviour
     private int direct = 1;
     float movespeed = 2f;
     private Rigidbody2D rb;
+    private bool isdestroyed = false;
     void Start()
-    {
+    {        
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
      
     void Update()
     {
+        if(!isdestroyed)
         mushRoomMoving();
     }
+    
     public void mushRoomMoving()
     {
         
-            rb.velocity = Vector2.left * movespeed * direct;
+            rb.velocity = -Vector2.right* movespeed * direct;
         
     }
 
@@ -30,16 +33,12 @@ public class Nam : MonoBehaviour
         if (collider.CompareTag("Tuong"))
             changedirection();
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player") && collision.collider.GetComponent<Rigidbody2D>().velocity.y < 0)
-        {
-            Destroy(this);
-        }
-            
+            isdestroyed = true;
     }
- 
+
     private void changedirection()
     { 
         direct = -direct;

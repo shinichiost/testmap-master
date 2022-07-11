@@ -7,7 +7,7 @@ public class OcSen : MonoBehaviour
 {
     public Transform rootPosition;
     private int direct = 1;
-    float movespeed = 1.5f;
+    float movespeed = 2;
     private Rigidbody2D rb,playerrb;
     private Animator anim;
     private float waitforchangestate = 4f;

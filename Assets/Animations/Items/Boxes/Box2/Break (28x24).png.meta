@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 666cdca5ea5798c4c83a4ef4b87d64c4
+guid: a766483fddea6b64f827838e089d1970
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4624569668062661555
-    second: Hit (28x24)_0
+      213: -4784554060977693878
+    second: Break (28x24)_0
   - first:
-      213: 6544220175307782732
-    second: Hit (28x24)_1
+      213: 2985246200973115026
+    second: Break (28x24)_1
   - first:
-      213: -1443808521566509384
-    second: Hit (28x24)_2
+      213: -8102069304995713464
+    second: Break (28x24)_2
   - first:
-      213: 1145515516053686660
-    second: Hit (28x24)_3
+      213: 2874570451049708880
+    second: Break (28x24)_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -35,6 +35,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,8 +46,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -66,9 +68,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -98,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hit (28x24)_0
+      name: Break (28x24)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c10573edcf8d5488235a250d01ec10
-      internalID: 4624569668062661555
+      spriteID: f93f6ce866a5d854985cfe6c6d445866
+      internalID: -4784554060977693878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hit (28x24)_1
+      name: Break (28x24)_1
       rect:
         serializedVersion: 2
         x: 28
@@ -133,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80f607165de238748a1b4717115760fb
-      internalID: 6544220175307782732
+      spriteID: db2ce1d13f4385e49aeca78c4c10bc40
+      internalID: 2985246200973115026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hit (28x24)_2
+      name: Break (28x24)_2
       rect:
         serializedVersion: 2
         x: 56
@@ -154,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddbcee8f6e4b0b24c86e11a7f1463a60
-      internalID: -1443808521566509384
+      spriteID: 0e4f7349851501448b00640e10a5a78f
+      internalID: -8102069304995713464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hit (28x24)_3
+      name: Break (28x24)_3
       rect:
         serializedVersion: 2
         x: 84
@@ -175,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e64d01463c42924d8b439561b62eea2
-      internalID: 1145515516053686660
+      spriteID: b39f0a11da25cff489d0e886d6c681f1
+      internalID: 2874570451049708880
       vertices: []
       indices: 
       edges: []
@@ -191,6 +197,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Break (28x24)_2: -8102069304995713464
+      Break (28x24)_0: -4784554060977693878
+      Break (28x24)_1: 2985246200973115026
+      Break (28x24)_3: 2874570451049708880
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -42,7 +42,7 @@ TextureImporter:
       213: 6747327868054909629
     second: Rock2_Idle (32x28)_12
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -62,6 +62,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -71,8 +73,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -93,9 +95,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -407,6 +413,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Rock2_Idle (32x28)_3: -6148594694035848250
+      Rock2_Idle (32x28)_11: -2263471757442629421
+      Rock2_Idle (32x28)_1: -2603007465218576700
+      Rock2_Idle (32x28)_4: 5903342228953101057
+      Rock2_Idle (32x28)_6: 4705623423857545985
+      Rock2_Idle (32x28)_10: 338621829386500074
+      Rock2_Idle (32x28)_8: -8342472925880523053
+      Rock2_Idle (32x28)_5: -335060181912154922
+      Rock2_Idle (32x28)_0: 2775701068622945926
+      Rock2_Idle (32x28)_7: -5088294295630748744
+      Rock2_Idle (32x28)_2: 7205351857023529823
+      Rock2_Idle (32x28)_9: 1402148618241145540
+      Rock2_Idle (32x28)_12: 6747327868054909629
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

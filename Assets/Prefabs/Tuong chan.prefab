@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2023218155668198853, guid: e6ad45fe5fc4b474f8123ad7d4914ec8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8156973315946466438, guid: e6ad45fe5fc4b474f8123ad7d4914ec8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -124,6 +128,10 @@ PrefabInstance:
     - target: {fileID: 831732022, guid: e6ad45fe5fc4b474f8123ad7d4914ec8, type: 3}
       propertyPath: m_GravityScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023218155668198853, guid: e6ad45fe5fc4b474f8123ad7d4914ec8, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8156973315946466438, guid: e6ad45fe5fc4b474f8123ad7d4914ec8, type: 3}
       propertyPath: m_RootOrder

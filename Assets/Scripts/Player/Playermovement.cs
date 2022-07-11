@@ -70,7 +70,7 @@ public class Playermovement : MonoBehaviour
         transform.Translate(Vector3.right * movem * movespeed * Time.deltaTime);
         if (CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded && rb.velocity.y == 0 )
         {
-            //anim.SetInteger("animationstate", 2);
+            anim.SetInteger("animationstate", 2);
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
 
         }
@@ -88,9 +88,11 @@ public class Playermovement : MonoBehaviour
         transform.Translate(Vector3.right * move * movespeed * Time.deltaTime);
         if (Input.GetButtonDown("Jump") && isGrounded && rb.velocity.y == 0)
         {
-            //anim.SetInteger("animationstate", 2);
+            anim.SetInteger("animationstate", 2);
+            //anim.Play("player_jump");
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);   
         }
+      
         
     }
   
