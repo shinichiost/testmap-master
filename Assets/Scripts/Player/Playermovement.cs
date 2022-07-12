@@ -10,7 +10,7 @@ public class Playermovement : MonoBehaviour
     Transform playermover;
     //jump
     [Range(1f,100f)]
-    private float jumpforce = 300f;
+    private float jumpforce = 400f;
     private float dbjumpforce = 30f;
 
     //move
@@ -50,7 +50,11 @@ public class Playermovement : MonoBehaviour
             isGrounded = true;
         
     }
-    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Ocsen"))
+            isGrounded = true;
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -63,8 +67,10 @@ public class Playermovement : MonoBehaviour
 
         if (movem ==1 || movem == -1)
         {
-            if(isGrounded)
-            anim.SetInteger("animationstate",(int)Mathf.Abs(movem));
+            if (isGrounded)
+            {
+                anim.SetInteger("animationstate", (int)Mathf.Abs(movem));
+            }
             transform.localScale = new Vector3(movem, 1, 1);
         }
         transform.Translate(Vector3.right * movem * movespeed * Time.deltaTime);
@@ -82,12 +88,15 @@ public class Playermovement : MonoBehaviour
         if (move != 0 )
         {
             if (isGrounded)
+            {
                 anim.SetInteger("animationstate", (int)Mathf.Abs(move));
+            }
             transform.localScale = new Vector3(move, 1, 1);
         }
         transform.Translate(Vector3.right * move * movespeed * Time.deltaTime);
         if (Input.GetButtonDown("Jump") && isGrounded && rb.velocity.y == 0)
         {
+            Player.instance.aus.PlayOneShot(Player.instance.jumpsound);
             anim.SetInteger("animationstate", 2);
             //anim.Play("player_jump");
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);   

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -13,13 +13,14 @@ public class Player : MonoBehaviour
     public List<GameObject> playerlist;
     public static Player instance;
     private Rigidbody2D rb;
-    public GameObject enermy;
-    public GameObject winbanner;
-    public GameObject losebanner;
     private Animator anim;
     public Text scoretext;
     [SerializeField]
     private int index;
+    //Sound
+    public AudioSource aus, soundtrack;
+    public AudioClip hitsound, jumpsound, collectsound, deadsound, winsound;
+    
     IEnumerator Start()
     {
         yield return new WaitForSeconds(0.2f);
@@ -29,6 +30,11 @@ public class Player : MonoBehaviour
         player.SetActive(true);
         
     }
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
     private void Update()
     {
         
@@ -37,7 +43,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag != "Ground")
+        if (collision.collider.CompareTag("Elixir"))
+        {
+            GetComponentInChildren<SpriteRenderer>().DOColor(Color.red, 3);
+            collision.collider.gameObject.SetActive(false);
+            Destroy(collision.collider);
+        }
+        else if (collision.collider.tag != "Ground")
         {
             Vector2 vt = collision.collider.GetComponent<Rigidbody2D>().velocity;
             if (collision.collider.transform.parent.gameObject != null)
@@ -74,15 +86,18 @@ public class Player : MonoBehaviour
                 if (collision.collider.CompareTag("Cup"))
                 {
                     win = true;
+                    aus.PlayOneShot(winsound);
+                    soundtrack.Stop();
                     UIManager.instance.showwinbanner(win);
                 }
             }
 
 
         }
+  
         yield return null;
     }
-    void OnTriggerEnter2D(Collider2D collision)
+    IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ocsen"))
             {
@@ -91,11 +106,16 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Apple"))
         {
             score++;
+            aus.PlayOneShot(collectsound);
+            collision.GetComponent<Animator>().SetBool("iscollected", true);
+            yield return new WaitForSeconds(0.5f);
             collision.gameObject.SetActive(false);
         }
         if (collision.CompareTag("DeadZone"))
         {
             isdead = true;
+            soundtrack.Stop();
+            aus.PlayOneShot(deadsound);
             UIManager.instance.showlosebanner(isdead);
         }
         if (collision.CompareTag("Bullet"))
@@ -133,6 +153,7 @@ public class Player : MonoBehaviour
     }
     public void decreaseHealth()
     {
+        Player.instance.aus.PlayOneShot(Player.instance.hitsound);
         anim.Play("player_hit");
         health -= 1;
         if (health >= 0)
@@ -140,9 +161,13 @@ public class Player : MonoBehaviour
         if (health == 0)
         {
             isdead = true;
+            aus.PlayOneShot(deadsound);
+            soundtrack.Stop();
             UIManager.instance.showlosebanner(isdead);
         }
     }
+
+
     public void increaseScore()
     {
         score++;
