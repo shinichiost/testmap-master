@@ -23,8 +23,10 @@ public class Nam : MonoBehaviour
     
     public void mushRoomMoving()
     {
-        
-            rb.velocity = -Vector2.right* movespeed * direct;
+
+        //rb.velocity = -Vector2.right* movespeed * direct;
+        Vector3 movement = new Vector3(-movespeed * direct, 0f, 0f);
+            transform.position += movement * Time.deltaTime;
         
     }
 

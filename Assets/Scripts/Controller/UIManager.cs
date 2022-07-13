@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public GameObject winbanner, losebanner, pausebanner;
     public static UIManager instance;
     public GameObject panel;
+    public AudioSource soundtrack;
     private void Awake()
     {
         if(instance == null)
@@ -38,10 +39,16 @@ public class UIManager : MonoBehaviour
     }
     public void PauseGame()
     {
+        soundtrack.Pause();
         Time.timeScale = 0;
     }
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        soundtrack.UnPause();
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

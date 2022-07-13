@@ -26,14 +26,15 @@ public class OcSen : MonoBehaviour
     }
     public void snailMoving()
     {
+        Vector3 movement = new Vector3(-movespeed * direct, 0f, 0f);
         int temp = anim.GetInteger("animationstate");
         if (temp == 0)
-            rb.velocity = -Vector2.right * movespeed * direct;
-        else if (temp == 1)
-            rb.velocity = Vector2.zero;
+            transform.position += movement * Time.deltaTime;
+        //else if (temp == 1)
+        //    rb.velocity = Vector2.zero;
         else if (temp == 2)
         {
-            rb.velocity = -Vector2.right * 4f * direct;
+            transform.position += movement * 3 * Time.deltaTime;
             if (waitforchangestate > 0)
             {
                 waitforchangestate -= Time.deltaTime;

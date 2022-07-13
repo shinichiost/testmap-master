@@ -77,7 +77,7 @@ public class Box : MonoBehaviour
             if (bebroken)
             {
                 anim.SetBool("isbreak", true);
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
                 Destroy(this.gameObject);
             }
             

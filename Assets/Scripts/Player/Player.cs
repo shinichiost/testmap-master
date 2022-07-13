@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     //Sound
     public AudioSource aus, soundtrack;
     public AudioClip hitsound, jumpsound, collectsound, deadsound, winsound;
-    
+    //Item
+    private bool invincible = false;
     IEnumerator Start()
     {
         yield return new WaitForSeconds(0.2f);
@@ -48,50 +49,65 @@ public class Player : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().DOColor(Color.red, 3);
             collision.collider.gameObject.SetActive(false);
             Destroy(collision.collider);
+            invincible = true;
+            yield return new WaitForSeconds(20f);
+            invincible = false;
+            GetComponentInChildren<SpriteRenderer>().DOColor(Color.white, 1);
         }
-        else if (collision.collider.tag != "Ground")
+
+        else if (collision.collider.tag != "Ground" )
         {
-            Vector2 vt = collision.collider.GetComponent<Rigidbody2D>().velocity;
-            if (collision.collider.transform.parent.gameObject != null)
+            if (invincible && collision.collider.tag != "Cup")
             {
-                var EnermyParent = collision.collider.transform.parent.gameObject;
-
-                if (EnermyParent.CompareTag("Enermy"))
+                collision.collider.GetComponentInChildren<SpriteRenderer>().flipY = true;
+                collision.collider.GetComponent<Collider2D>().enabled = false;
+                Vector3 movement = new Vector3(Random.Range(40,70), -40,0);
+                collision.collider.transform.position += movement * Time.deltaTime;
+            }
+            else
+            {
+                Vector2 vt = collision.collider.GetComponent<Rigidbody2D>().velocity;
+                if (collision.collider.transform.parent.gameObject != null)
                 {
-                    if (rb.velocity.y < 0)
-                    {
+                    var EnermyParent = collision.collider.transform.parent.gameObject;
 
-                        if (collision.collider.tag != "Ocsen")
+                    if (EnermyParent.CompareTag("Enermy"))
+                    {
+                        if (rb.velocity.y < 0)
                         {
-                            collision.collider.GetComponent<Rigidbody2D>().velocity = new Vector2(0, vt.y);
-                            collision.collider.isTrigger = true;
-                            Destroy(collision.collider);
+
+                            if (collision.collider.tag != "Ocsen")
+                            {
+                                Destroy(collision.collider);
+                            }
+
+                        }
+                        else
+                        {
+                            Collider2D col = collision.collider;
+                            col.isTrigger = true;
+                            col.GetComponent<Rigidbody2D>().gravityScale = 0;
+                            decreaseHealth();
+                            yield return new WaitForSeconds(2f);
+                            col.isTrigger = false;
+                            col.GetComponent<Rigidbody2D>().gravityScale = 1;
+                            collision.collider.GetComponent<Rigidbody2D>().velocity = vt;
+
+
                         }
 
+
                     }
-                    else
+                    // WIN--------------------------------------------------------------------
+                    if (collision.collider.CompareTag("Cup"))
                     {
-                        collision.collider.isTrigger = true;
-                        collision.collider.GetComponent<Rigidbody2D>().velocity = new Vector2(vt.x, 0);
-                        decreaseHealth();
-                        yield return new WaitForSeconds(2f);
-                        collision.collider.isTrigger = false;
-                        collision.collider.GetComponent<Rigidbody2D>().velocity = vt;
-
-
+                        win = true;
+                        aus.PlayOneShot(winsound);
+                        soundtrack.Stop();
+                        UIManager.instance.showwinbanner(win);
                     }
-
-
-                }
-                if (collision.collider.CompareTag("Cup"))
-                {
-                    win = true;
-                    aus.PlayOneShot(winsound);
-                    soundtrack.Stop();
-                    UIManager.instance.showwinbanner(win);
                 }
             }
-
 
         }
   
@@ -99,33 +115,39 @@ public class Player : MonoBehaviour
     }
     IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ocsen"))
+        if (invincible && !collision.CompareTag("Ground") && !collision.CompareTag("DeadZone") && !collision.CompareTag("Apple"))
+            Destroy(collision);
+        else
+        {
+            if (collision.CompareTag("Ocsen"))
             {
-            
-        }
-        if (collision.CompareTag("Apple"))
-        {
-            score++;
-            aus.PlayOneShot(collectsound);
-            collision.GetComponent<Animator>().SetBool("iscollected", true);
-            yield return new WaitForSeconds(0.5f);
-            collision.gameObject.SetActive(false);
-        }
-        if (collision.CompareTag("DeadZone"))
-        {
-            isdead = true;
-            soundtrack.Stop();
-            aus.PlayOneShot(deadsound);
-            UIManager.instance.showlosebanner(isdead);
-        }
-        if (collision.CompareTag("Bullet"))
-        {
-            decreaseHealth();
-            collision.gameObject.SetActive(false);
-        }
-        if(collision.CompareTag("Trap"))
-        {
-            decreaseHealth();
+
+            }
+            if (collision.CompareTag("Apple"))
+            {
+                score++;
+                aus.PlayOneShot(collectsound);
+                collision.GetComponent<Animator>().SetBool("iscollected", true);
+                yield return new WaitForSeconds(0.5f);
+                collision.gameObject.SetActive(false);
+            }
+            if (collision.CompareTag("Bullet"))
+            {
+                decreaseHealth();
+                collision.gameObject.SetActive(false);
+            }
+            if (collision.CompareTag("Trap"))
+            {
+                decreaseHealth();
+            }
+            // LOSE -----------------------------------------------
+            if (collision.CompareTag("DeadZone"))
+            {
+                isdead = true;
+                soundtrack.Stop();
+                aus.PlayOneShot(deadsound);
+                UIManager.instance.showlosebanner(isdead);
+            }
         }
             
     }
@@ -142,6 +164,10 @@ public class Player : MonoBehaviour
     public bool getWin()
     {
         return this.win;
+    }
+    public bool getinvincible()
+    {
+        return this.invincible;
     }
     public GameObject getPlayer()
     {

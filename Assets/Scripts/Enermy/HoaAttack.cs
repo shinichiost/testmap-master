@@ -10,7 +10,6 @@ public class HoaAttack : MonoBehaviour
     private bool isdestroyed = false;
     private float t1 = 0;
     private float t2 = 2.38f;
-
  
     void Update()
     {
@@ -37,7 +36,7 @@ public class HoaAttack : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player") && collision.collider.GetComponent<Rigidbody2D>().velocity.y<0)
+        if (collision.collider.CompareTag("Player") && (Player.instance.getinvincible() || collision.collider.GetComponent<Rigidbody2D>().velocity.y<-1))
         {
             isdestroyed = true;
         }

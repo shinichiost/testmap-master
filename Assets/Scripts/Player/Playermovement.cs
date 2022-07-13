@@ -15,7 +15,7 @@ public class Playermovement : MonoBehaviour
 
     //move
     [Range(1f, 100f)]
-    private float movespeed = 3f;
+    private float movespeed = 3.5f;
     private float movem = 0,move = 0;
     [SerializeField]
     private bool isfalling = false, isGrounded = false;
